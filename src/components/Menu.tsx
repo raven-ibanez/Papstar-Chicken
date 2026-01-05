@@ -2,7 +2,7 @@ import React from 'react';
 import { MenuItem, CartItem } from '../types';
 import { useCategories } from '../hooks/useCategories';
 import MenuItemCard from './MenuItemCard';
-import MobileNav from './MobileNav';
+
 
 // Preload images for better performance
 const preloadImages = (items: MenuItem[]) => {
@@ -40,21 +40,6 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
     }
   }, [menuItems, activeCategory]);
 
-  const handleCategoryClick = (categoryId: string) => {
-    setActiveCategory(categoryId);
-    const element = document.getElementById(categoryId);
-    if (element) {
-      const headerHeight = 64; // Header height
-      const mobileNavHeight = 60; // Mobile nav height
-      const offset = headerHeight + mobileNavHeight + 20; // Extra padding
-      const elementPosition = element.offsetTop - offset;
-
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
 
   React.useEffect(() => {
     if (categories.length > 0) {
@@ -87,10 +72,7 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
 
   return (
     <>
-      <MobileNav
-        activeCategory={activeCategory}
-        onCategoryClick={handleCategoryClick}
-      />
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16 relative">
           <h2 className="text-6xl font-bangers text-papstar-red drop-shadow-[3px_3px_0_#111111] transform -rotate-2 inline-block bg-papstar-yellow px-8 py-2 border-4 border-papstar-black shadow-[6px_6px_0_#111111]">
